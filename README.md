@@ -29,7 +29,7 @@ You can publish the config file with the below. This gives you access to edit th
 php artisan vendor:publish --provider="LyneTechnologies\Larablog\LarablogServiceProvider" --tag="larablog-config"
 ```
 
-###After installing
+### After installing
 
 First you'll need to review the routes that are set in the Larablog config file, make sure the middleware and admin routes are correct.
 
@@ -43,10 +43,10 @@ Currently this ships with a number of plugins and features already added to the 
 
 We have no association with Tiny.
 
-###Frequently added features
+### Frequently added features
 Here are some of the most added editor features. 
 
-####Font settings
+**Font settings**
 Add the ability to change font family and font size.
 
 ```js
@@ -55,7 +55,7 @@ Add the ability to change font family and font size.
 toolbar: '... fontselect fontsizeselect',
 ```
 
-####Code blocks
+**Code blocks**
 Add blocks of code with code highlighting
 
 ```js
@@ -74,7 +74,7 @@ To add highlighting, download ``prism.js`` and ``prism.css`` [here from the pris
 <script src="prism.js"></script>
 ```
 
-####Dark mode
+**Dark mode**
 
 ```js
 //editor.js
