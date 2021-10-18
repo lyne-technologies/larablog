@@ -9,3 +9,7 @@ All notable changes to `larablog` will be documented in this file.
 ## 1.0.1 - 2021-10-12
 
 - Bug fix
+
+## 1.1.0 - 2021-10-18
+
+- Moved file uploads to storage
