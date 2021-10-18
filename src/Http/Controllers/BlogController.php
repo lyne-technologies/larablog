@@ -7,6 +7,7 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 use LyneTechnologies\Larablog\Http\Controllers\Controller;
 use LyneTechnologies\Larablog\Models\Post;
 use Illuminate\Support\Facades\File;
@@ -44,8 +45,8 @@ class BlogController extends Controller
         );
 
         if ($request->featuredImage) {
-            $imageName = self::fileName(pathinfo($request->featuredImage->getClientOriginalName(), PATHINFO_FILENAME), $request->featuredImage->extension());
-            $request->featuredImage->move(public_path('blog-images'), $imageName);
+            $imageName=self::fileName(pathinfo($request->featuredImage->getClientOriginalName(), PATHINFO_FILENAME), $request->featuredImage->extension());
+            Storage::put('public/blog-images/'.$imageName, File::get($request->featuredImage));
             $post->featured_image = $imageName;
             $post->save();
         }
@@ -74,7 +75,7 @@ class BlogController extends Controller
     private function fileName($fileName, $fileExtension, $increment = 0)
     {
         $imageName = $increment > 0 ? "{$fileName}-{$increment}" : "{$fileName}";
-        if (File::exists('blog-images/' . $imageName.'.'.$fileExtension)) {
+        if (Storage::exists('public/blog-images/' . $imageName.'.'.$fileExtension)) {
             $increment++;
             return self::fileName($fileName, $fileExtension, $increment);
         } else {
@@ -83,15 +84,8 @@ class BlogController extends Controller
     }
 
     public function upload(Request $request){
-
-//        $imageName = self::fileName(pathinfo($request->file('file')->getClientOriginalName(), PATHINFO_FILENAME), $request->file('file')->extension());
-//        $request->file('file')->move(public_path('blog-images'), $imageName);
-
-
         $fileName=self::fileName(pathinfo($request->file('file')->getClientOriginalName(), PATHINFO_FILENAME), $request->file('file')->extension());
-        $request->file('file')->move(public_path('/blog-images/'), $fileName);
-        return response()->json(['location'=>"/blog-images/$fileName"]);
-
-
+        Storage::put('public/blog-images/'.$fileName, File::get($request->file('file')));
+        return response()->json(['location'=>asset("blog-images/{$fileName}")]);
     }
 }
