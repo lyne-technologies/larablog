@@ -18,7 +18,7 @@ class CreatePostsTable extends Migration
             $table->longText('featured_image')->nullable();
             $table->longText('title');
             $table->longText('body')->nullable();
-            $table->json('categories')->default([]);
+            $table->json('categories')->nullable();
             $table->timestamps();
         });
     }
