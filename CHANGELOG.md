@@ -2,7 +2,7 @@
 
 All notable changes to `larablog` will be documented in this file.
 
-## 1.1.1 - 2021-10-18
+## 1.1.1 - 2021-10-19
 
 - Allowed php ^7.3
 
