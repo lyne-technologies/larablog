@@ -4,7 +4,7 @@ All notable changes to `larablog` will be documented in this file.
 
 ## 1.1.1 - 2021-10-19
 
-- Allowed php ^7.3
+- Fix to image upload
 
 ## 1.1.0 - 2021-10-18
 
