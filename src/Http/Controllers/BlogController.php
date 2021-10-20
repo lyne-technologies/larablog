@@ -86,6 +86,6 @@ class BlogController extends Controller
     public function upload(Request $request){
         $fileName=self::fileName(pathinfo($request->file('file')->getClientOriginalName(), PATHINFO_FILENAME), $request->file('file')->extension());
         Storage::put('public/blog-images/'.$fileName, File::get($request->file('file')));
-        return response()->json(['location'=>asset("blog-images/{$fileName}")]);
+        return response()->json(['location'=>Storage::url('blog-images/'.$fileName)]);
     }
 }
