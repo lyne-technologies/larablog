@@ -62,10 +62,10 @@
                     <div>
                         @foreach($categories as $category)
                             <div>
-                                <input type="checkbox" id="categories[{{$category->slug}}]" name="categories[{{$category->slug}}]"
-                                        {{in_array($category->slug, @$post->categories?:[]) ? 'checked':''}}
+                                <input type="checkbox" id="categories[{{$category->id}}]" name="categories[{{$category->id}}]"
+                                        {{in_array($category->id, @$post->categories?:[]) ? 'checked':''}}
                                 >
-                                <label for="categories[{{$category->slug}}]">{{$category->name}}</label>
+                                <label for="categories[{{$category->id}}]">{{$category->name}}</label>
                             </div>
                         @endforeach
                     </div>
@@ -77,8 +77,5 @@
 
 
     </form>
-    <!-- Include the Quill library -->
-    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
-    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
     <script type="module" src="{{ asset('/vendor/larablog/js/editor.js') }}"></script>
 @endsection
